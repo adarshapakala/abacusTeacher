@@ -1,4 +1,4 @@
-## To generate the voice from the test
+## To generate the voice from the text
 from gtts import gTTS
 import pygame
 import time
