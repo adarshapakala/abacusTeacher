@@ -16,9 +16,8 @@ mainWindow.lift()
 pygame.mixer.init()
 time.sleep(1)
 
-d = [5, -2, 3]
+d = [2, 1, 2]
 s = 0
-
 
 def dectate(dectNumber, lastSum, ):
     if dectNumber > 0:
@@ -34,18 +33,24 @@ def dectate(dectNumber, lastSum, ):
     pygame.mixer.music.stop()
     pygame.mixer.music.unload()
     os.remove('good.mp3')
-
     return lastSum
 
 
 for i in d:
-    def updateTxt():
-        lbl1["text"] = str(i)
-
-
-    mainWindow.after(500, updateTxt())
+    lbl1["text"] = str(i)
     mainWindow.update()
     s = dectate(i, s)
-#    lbl1 = tk.Label(mainWindow, text=str(i), font=40)
 
+lbl1["text"] = 'And answer is:'
+tts = gTTS(text='And your answer is', lang='en')
+tts.save('good.mp3')
+time.sleep(1)
+pygame.mixer.music.load('good.mp3')
+pygame.mixer.music.play()
+time.sleep(4)
+pygame.mixer.music.stop()
+pygame.mixer.music.unload()
+os.remove('good.mp3')
+lbl1["text"] = 'And answer is:' + str(s)
+mainWindow.update()
 mainWindow.mainloop()
